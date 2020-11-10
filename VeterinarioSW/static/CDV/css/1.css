@@ -1,0 +1,44 @@
+html {
+  font-family: 'Montserrat', sans-serif;
+ 
+}
+
+form {
+  padding: 37.5px;
+  margin: 50px 0;
+}
+
+
+@media screen and (max-width: 420px) {
+  h1 {
+    font-size: 18px;
+  }
+  
+}
+nav{
+  background-color: #1565c0 !important;
+  color: white;
+
+}
+
+.centrado{
+
+  transform: translate(10%, 25%);
+
+}
+
+.imgdiv{
+
+  width: 350px;
+  height: 250px;
+}
+.imglogo{
+  width: 80px;
+  height: 80px;
+
+}
+
+.centrado2{
+
+transform: translate(10%, 40%);
+}
