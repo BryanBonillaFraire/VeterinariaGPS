@@ -1,0 +1,89 @@
+{% extends 'ControlDeVeterinaria/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1> Facturas </h1>
+<br>
+<form action="" method="post" class="form-horizontal" enctype="multipart/form-data">{% csrf_token %}
+	<div class="row">
+		<div class="col-sm-3">
+			<label>Proveedor: </label>
+			{{ form.proveedor }}
+		</div>
+		<div class="col-sm-3">
+			<label>Comprador: </label>
+			{{ form.comprador }}
+		</div>
+		<div class="col-sm-3">
+			<label>N. Serie: </label>
+			{{ form.numeroSerie }}
+		</div>
+		<div class="col-sm-3">
+			<label>Fecha de expedicion: </label>
+			{{ form.fechaExpedicion }}
+		</div>
+		<div class="col-sm-3">
+			<label>Concepto: </label>
+			{{ form.concepto }}
+		</div>
+		<div class="col-sm-3">
+			<label>Costo Unitario: </label>
+			{{ form.costoUnitario }}
+		</div>
+		<div class="col-sm-3">
+			<label>Monto total: </label>
+			{{ form.montoTotal }}
+		</div>
+		<div class="col-sm-3">
+			<label>Tipo imposito: </label>
+			{{ form.tipoImposito }}
+		</div>
+		<div class="col-sm-3">
+			<button class="btn btn-primary" type="submit"> Guardar </button>
+		</div>
+	</div>
+	<hr>
+	<div class="row col-sm-12">
+		<table id="dvData" class="table table-striped" >
+			<thead>
+				<tr>
+					<th >
+						<strong>Proveedor</strong>
+					</th>
+					<th >
+						<strong>Comprador</strong>
+					</th>
+					<th >
+						<strong>Fecha de Expedicion</strong>
+					</th>
+					<th >
+						<strong>Concepto</strong>
+					</th>
+					<th >
+						<strong>Ver</strong>
+					</th>
+					<th >
+						<strong>Eliminar</strong>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for datos in listaFactura %}
+					<tr>
+						<td >{{ datos.proveedor }}</td>
+						<td >{{ datos.comprador }}</td>
+						<td >{{ datos.fechaExpedicion }}</td>
+						<td >{{ datos.concepto }}</td>
+						<td >
+							<a href="{% url 'ver-factura' datos.id %}" class="btn btn-default btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i></a>
+						</td>
+						<td >
+							<a href="{% url 'borrar-factura' datos.id %}" class="btn btn-default btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i></a>
+						</td>
+					</tr>	
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>		
+</form>
+{% endblock %}

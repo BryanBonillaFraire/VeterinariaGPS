@@ -1,0 +1,68 @@
+{% extends 'ControlDeVeterinaria/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1> Agregar Propietario </h1>
+<br>
+<form action="" method="post" class="form-horizontal" enctype="multipart/form-data">{% csrf_token %}
+	<div class="row">
+		<div class="col-sm-3">
+			<label>Nombre: </label>
+			{{ form.nombrePropietario }}
+		</div>
+		<div class="col-sm-3">
+			<label>Telefono Movil: </label>
+			{{ form.telefonoMovil }}
+		</div>
+		<div class="col-sm-3">
+			<label>Telefono Casa: </label>
+			{{ form.telefonoCasa }}
+		</div>
+		<div class="col-sm-3">
+			<label>Correo Electronico: </label>
+			{{ form.correoElectronico }}
+		</div>
+		<div class="col-sm-3">
+			<button class="btn btn-primary" type="submit"> Guardar </button>
+		</div>
+	</div>
+	<hr>
+	<div class="row col-sm-12">
+		<table id="dvData" class="table table-striped" >
+			<thead>
+				<tr>
+					<th >
+						<strong>Nombre</strong>
+					</th>
+					<th >
+						<strong>Telefono Movil</strong>
+					</th>
+					<th >
+						<strong>Telefono Casa</strong>
+					</th>
+					<th >
+						<strong>Correo Electronico</strong>
+					</th>
+					<th >
+						<strong>Eliminar</strong>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for datos in listaPropietario %}
+					<tr>
+						<td >{{ datos.nombrePropietario }}</td>
+						<td >{{ datos.telefonoMovil }}</td>
+						<td >{{ datos.telefonoCasa }}</td>
+						<td >{{ datos.correoElectronico }}</td>
+						<td >
+							<a href="{% url 'borrar-propietario' datos.id %}" class="btn btn-default btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i></a>
+						</td>
+					</tr>	
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>		
+</form>
+
+{% endblock %}

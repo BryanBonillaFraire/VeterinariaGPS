@@ -2,6 +2,34 @@
 {% load static %}
 {% block content %}
 
-<h1>  </h1>
+<h1> Agregar Mascota </h1>
+<br>
+<form action="" method="post" class="form-horizontal" enctype="multipart/form-data">{% csrf_token %}
+	<div class="row">
+		<div class="col-sm-3">
+			<label>Nombre: </label>
+			{{ form.nombreMascota }}
+		</div>
+		<div class="col-sm-3">
+			<label>Especie: </label>
+			{{ form.especie }}
+		</div>
+		<div class="col-sm-3">
+			<label>Raza: </label>
+			{{ form.raza }}
+		</div>
+		<div class="col-sm-3">
+			<label>Edad: </label>
+			{{ form.edad }}
+		</div>
+		<div class="col-sm-3">
+			<label>Propietario: </label>
+			{{ form.propietario }}
+		</div>
+		<div class="col-sm-3">
+			<button class="btn btn-primary" type="submit"> Guardar </button>
+		</div>
+	</div>
+</form>
 
 {% endblock %}

@@ -69,6 +69,8 @@ TEMPLATES = [
     },
 ]
 
+AUTH_USER_MODEL = 'ControlDeVeterinaria.Account'
+
 WSGI_APPLICATION = 'VeterinarioSW.wsgi.application'
 
 

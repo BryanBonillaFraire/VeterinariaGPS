@@ -1,0 +1,75 @@
+{% extends 'ControlDeVeterinaria/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1> Productos </h1>
+<br>
+<form action="" method="post" class="form-horizontal" enctype="multipart/form-data">{% csrf_token %}
+	<div class="row">
+		<div class="col-sm-3">
+			<label>Nombre: </label>
+			{{ form.nombre }}
+		</div>
+		<div class="col-sm-3">
+			<label>Tipo: </label>
+			{{ form.tipo }}
+		</div>
+		<div class="col-sm-3">
+			<label>Marca: </label>
+			{{ form.marca }}
+		</div>
+        <div class="col-sm-3">
+			<label>Especificaciones: </label>
+			{{ form.especificaciones }}
+		</div>
+		<div class="col-sm-3">
+			<label>Costo Unitario: </label>
+			{{ form.costoUnitario }}
+		</div>
+		<div class="col-sm-3">
+			<button class="btn btn-primary" type="submit"> Guardar </button>
+		</div>
+	</div>
+	<hr>
+	<div class="row col-sm-12">
+		<table id="dvData" class="table table-striped" >
+			<thead>
+				<tr>
+					<th >
+						<strong>Nombre</strong>
+					</th>
+					<th >
+						<strong>Tipo</strong>
+					</th>
+					<th >
+						<strong>Marca</strong>
+					</th>
+					<th >
+						<strong>Especificaciones</strong>
+					</th>
+					<th >
+						<strong>Costo Unitario</strong>
+					</th>
+					<th >
+						<strong>Eliminar</strong>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for datos in listaProductos %}
+					<tr>
+						<td >{{ datos.nombre }}</td>
+						<td >{{ datos.tipo }}</td>
+						<td >{{ datos.marca }}</td>
+						<td >{{ datos.especificaciones }}</td>
+                        <td >{{ datos.costoUnitario }}</td>
+						<td >
+							<a href="{% url 'borrar-producto' datos.id %}" class="btn btn-default btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i></a>
+						</td>
+					</tr>	
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>		
+</form>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'ControlDeVeterinaria/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1> Factura {{ datosFactura.numeroSerie }} </h1>
+<br>
+<h3> Proveedor: <i style="color: blue"> {{datosFactura.proveedor }} </i></h3>
+<br>
+<h3> Comprador: <i style="color: blue"> {{datosFactura.comprador }} </i></h3>
+<br>
+<h3> Fecha De Expedicion: <i style="color: blue"> {{datosFactura.fechaExpedicion }} </i></h3>
+<br>
+<h3> Concepto: <i style="color: blue"> {{datosFactura.concepto }} </i></h3>
+<br>
+<h3> Costo Unitario: <i style="color: blue"> {{datosFactura.costoUnitario }} </i></h3>
+<br>
+<h3> Monto Total: <i style="color: blue"> {{datosFactura.montoTotal }} </i></h3>
+<br>
+<h3> Tipo Imposito: <i style="color: blue"> {{datosFactura.tipoImposito }} </i></h3>
+<br>
+<h3><a href="{% url 'factura' %}"> Volver </a></h3>
+
+
+{% endblock %}

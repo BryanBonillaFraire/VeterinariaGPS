@@ -3,15 +3,15 @@
 {% block content %}
 
     <div class="row rhome">
-  <div class="col centrado"><a href=""><img src="{% static "CDV/images/Mascotas.png" %}" class="imgdiv"></a></div>
-  <div class="col centrado"><a href=""><img src="{% static "CDV/images/Propetario.png" %}" class="imgdiv"></div>
-  <div class="col centrado"><a href=""><img src="{% static "CDV/images/Citas.png" %}" class="imgdiv"></div>
+  <div class="col centrado"><a href="{% url 'ver-mascota' %}"><img src="{% static "CDV/images/Mascotas.png" %}" class="imgdiv"></a></div>
+  <div class="col centrado"><a href="{% url 'crear-propietario' %}"><img src="{% static "CDV/images/Propetario.png" %}" class="imgdiv"></div>
+  <div class="col centrado"><a href="{% url 'crear-cita' %}"><img src="{% static "CDV/images/Citas.png" %}" class="imgdiv"></div>
 </div>
 
 <div class="row rhome">
-  <div class="col centrado2"><a href=""><img src="{% static "CDV/images/Productos.png" %}" class="imgdiv"></a></div>
-  <div class="col centrado2"><a href=""><img src="{% static "CDV/images/Ventas.png" %}" class="imgdiv"></div>
-  <div class="col centrado2"><a href=""><img src="{% static "CDV/images/Facturacion.png" %}" class="imgdiv"></div>
+  <div class="col centrado2"><a href="{% url 'productos' %}"><img src="{% static "CDV/images/Productos.png" %}" class="imgdiv"></a></div>
+  <div class="col centrado2"><a href="{% url 'pago-servicio' %}"><img src="{% static "CDV/images/Ventas.png" %}" class="imgdiv"></div>
+  <div class="col centrado2"><a href="{% url 'factura' %}"><img src="{% static "CDV/images/Facturacion.png" %}" class="imgdiv"></div>
 </div>
 
 {% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'ControlDeVeterinaria/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1> Citas </h1>
+<br>
+<form action="" method="post" class="form-horizontal" enctype="multipart/form-data">{% csrf_token %}
+	<div class="row">
+		<div class="col-sm-3">
+			<label>Mascota: </label>
+			{{ form.mascota }}
+		</div>
+		<div class="col-sm-3">
+			<label>Fecha: </label>
+			{{ form.fecha }}
+		</div>
+		<div class="col-sm-3">
+			<label>Motivo: </label>
+			{{ form.motivo }}
+		</div>
+		<div class="col-sm-3">
+			<button class="btn btn-primary" type="submit"> Guardar </button>
+		</div>
+	</div>
+	<hr>
+	<div class="row col-sm-12">
+		<table id="dvData" class="table table-striped" >
+			<thead>
+				<tr>
+					<th >
+						<strong>Mascota</strong>
+					</th>
+					<th >
+						<strong>Fecha</strong>
+					</th>
+					<th >
+						<strong>Motivo</strong>
+					</th>
+					<th >
+						<strong>Eliminar</strong>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for datos in listaCitas %}
+					<tr>
+						<td >{{ datos.mascota }}</td>
+						<td >{{ datos.fecha }}</td>
+						<td >{{ datos.motivo }}</td>
+						<td >
+							<a href="{% url 'borrar-cita' datos.id %}" class="btn btn-default btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i></a>
+						</td>
+					</tr>	
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>		
+</form>
+
+<script>
+
+$('#id_fecha').datetimepicker({
+    // mask:true,
+    lang:'es',
+    format:'d/m/Y',
+    timepicker:true,
+ });
+
+</script>
+
+{% endblock %}

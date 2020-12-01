@@ -1,0 +1,83 @@
+{% extends 'ControlDeVeterinaria/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1> Pago Servicios </h1>
+<br>
+<form action="" method="post" class="form-horizontal" enctype="multipart/form-data">{% csrf_token %}
+	<div class="row">
+		<div class="col-sm-3">
+			<label>Propietario: </label>
+			{{ form.propietario }}
+		</div>
+		<div class="col-sm-3">
+			<label>Servicios: </label>
+			{{ form.servicios }}
+		</div>
+		<div class="col-sm-3">
+			<label>Costo Unitario: </label>
+			{{ form.costoUnitario }}
+		</div>
+        <div class="col-sm-3">
+			<label>Monto Total: </label>
+			{{ form.montoTotal }}
+		</div>
+		<div class="col-sm-3">
+			<label>Monto Pagado: </label>
+			{{ form.montoPagado }}
+		</div>
+		<div class="col-sm-3">
+			<label>Forma De Pago: </label>
+			{{ form.formaPago }}
+		</div>
+		<div class="col-sm-3">
+			<button class="btn btn-primary" type="submit"> Guardar </button>
+		</div>
+	</div>
+	<hr>
+	<div class="row col-sm-12">
+		<table id="dvData" class="table table-striped" >
+			<thead>
+				<tr>
+					<th >
+						<strong>Propietario</strong>
+					</th>
+					<th >
+						<strong>Servicios</strong>
+					</th>
+					<th >
+						<strong>Costo Unitario</strong>
+					</th>
+					<th >
+						<strong>Monto Total</strong>
+					</th>
+					<th >
+						<strong>Monto Pagado</strong>
+					</th>
+					<th >
+						<strong>Forma De Pago</strong>
+					</th>
+					<th >
+						<strong>Eliminar</strong>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for datos in listaPagos %}
+					<tr>
+						<td >{{ datos.propietario }}</td>
+						<td >{{ datos.servicios }}</td>
+						<td >{{ datos.costoUnitario }}</td>
+                        <td >{{ datos.montoTotal }}</td>
+						<td >{{ datos.montoPagado }}</td>
+						<td >{{ datos.formaPago }}</td>
+						<td >
+							<a href="{% url 'borrar-pago' datos.id %}" class="btn btn-default btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i></a>
+						</td>
+					</tr>	
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>		
+</form>
+{% endblock %}

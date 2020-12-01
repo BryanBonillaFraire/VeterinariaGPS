@@ -1,0 +1,55 @@
+{% extends 'ControlDeVeterinaria/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1>Mascotas</h1>
+
+<a href="{% url 'crear-mascota' %}"> Agregar Mascota </a>
+
+<div class="row col-sm-12">
+		<table id="dvData" class="table table-striped" >
+			<thead>
+				<tr>
+					<th >
+						<strong>ID/Ver Expediente</strong>
+					</th>
+					<th >
+						<strong>Nombre</strong>
+					</th>
+					<th >
+						<strong>Especie</strong>
+					</th>
+					<th >
+						<strong>Raza</strong>
+					</th>
+					<th >
+						<strong>Edad</strong>
+					</th>
+					<th >
+						<strong>Propietario</strong>
+					</th>
+					<th >
+						<strong>Eliminar</strong>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for datos in listaMascotas %}
+					<tr>
+						<td ><h3><a href = "{% url 'expediente-mascota' datos.id %}" >{{ datos.id }}</a></h3></td>
+						<td >{{ datos.nombreMascota }}</td>
+						<td >{{ datos.especie }}</td>
+						<td >{{ datos.raza }}</td>
+						<td >{{ datos.edad }}</td>
+						<td >{{ datos.propietario }}</td>
+						<td >
+							<a href="{% url 'borrar-mascota' datos.id %}" class="btn btn-default btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i></a>
+						</td>
+					</tr>	
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+
+{% endblock %}

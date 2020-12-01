@@ -1,0 +1,44 @@
+{% extends 'ControlDeVeterinaria/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1> Agregar Para Expediente</h1>
+
+<br>
+	<div class="row">
+<form action="" method="post" class="form-horizontal" enctype="multipart/form-data">{% csrf_token %}
+		<div>
+			<label>Vacunas: </label>
+			{{ formVacunas.vacuna }}
+            {{ formVacunas.mascota }}
+            <button class="btn btn-primary" type="submit"> Guardar </button>
+		</div>
+</form>
+<form action="" method="post" class="form-horizontal" enctype="multipart/form-data">{% csrf_token %}
+		<div>
+			<label>Cirugias: </label>
+			{{ formCirugias.cirugia }}
+            {{ formCirugias.mascota }}
+            <button class="btn btn-primary" type="submit"> Guardar </button>
+		</div>
+</form>
+<form action="" method="post" class="form-horizontal" enctype="multipart/form-data">{% csrf_token %}
+		<div>
+			<label>Enfermedades: </label>
+			{{ formEnfermedades.enfermedad }}
+            {{ formEnfermedades.mascota }}
+            <button class="btn btn-primary" type="submit"> Guardar </button>
+		</div>
+</form>
+<form action="" method="post" class="form-horizontal" enctype="multipart/form-data">{% csrf_token %}
+		<div>
+			<label>Otros: </label>
+			{{ formOtros.otro }}
+            {{ formOtros.mascota }}
+            <button class="btn btn-primary" type="submit"> Guardar </button>
+		</div>
+</form>
+	<hr>
+</div>
+
+{% endblock %}

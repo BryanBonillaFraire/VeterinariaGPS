@@ -1,0 +1,47 @@
+{% extends 'ControlDeVeterinaria/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1> Expedeinte de : {{mascota.nombreMascota}}</h1>
+
+<h2> Vacunas: </h2>
+
+<ul>
+{% for vacuna in vacunas %}
+
+<h5><li>{{vacuna.vacuna}}</li></h5>
+
+{% endfor %}
+</ul>
+
+<h2> Cirugias: </h2>
+
+<ul>
+{% for cirugia in cirugias %}
+
+<h5><li>{{cirugia.cirugia}}</li></h5>
+
+{% endfor %}
+</ul>
+
+<h2> Enfermedades: </h2>
+
+<ul>
+{% for enfermedad in enfermedades %}
+
+<h5><li>{{enfermedad.enfermedad}}</li></h5>
+
+{% endfor %}
+</ul>
+
+<h2> Otros: </h2>
+
+<ul>
+{% for otro in otros %}
+
+<h5><li>{{otro.otro}}</li></h5>
+
+{% endfor %}
+</ul>
+
+{% endblock %}

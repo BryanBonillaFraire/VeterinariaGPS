@@ -1,0 +1,22 @@
+{% extends 'ControlDeVeterinaria/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1> Comprador {{ datosComprador.nombre }} </h1>
+<br>
+<h3> RFC: <i style="color: blue"> {{datosComprador.rfc }} </i></h3>
+<br>
+<h3> Domicilio: <i style="color: blue"> {{datosComprador.domicilio }} </i></h3>
+<br>
+<h3> Codigo Postal: <i style="color: blue"> {{datosComprador.cp }} </i></h3>
+<br>
+<h3> Poblacion: <i style="color: blue"> {{datosComprador.poblacion }} </i></h3>
+<br>
+<h3> Telefono: <i style="color: blue"> {{datosComprador.telefono }} </i></h3>
+<br>
+<h3> Correo: <i style="color: blue"> {{datosComprador.correo }} </i></h3>
+<br>
+<h3><a href="{% url 'comprador' %}"> Volver </a></h3>
+
+
+{% endblock %}

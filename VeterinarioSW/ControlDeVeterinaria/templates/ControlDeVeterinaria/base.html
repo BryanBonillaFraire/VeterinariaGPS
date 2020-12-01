@@ -19,22 +19,22 @@ body {
 <body>
 	<header>
 		<nav class="navbar navbar-expand-lg">
-      <a class="navbar-brand text-white" href="#" ><img src="{% static "CDV/images/Logo.png" %}" class="imglogo"></a>
+      <a class="navbar-brand text-white" href="{% url 'index' %}" ><img src="{% static "CDV/images/Logo.png" %}" class="imglogo"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       </button>
     
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link text-white" href=# >Inicio <span class="sr-only">(current)</span></a>
+            <a class="nav-link text-white" href={% url 'index' %} >Inicio <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Productos
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Añadir Productos</a>
-              <a class="dropdown-item" href="#">Mostrar Productos</a>
+              <a class="dropdown-item" href="{% url 'productos' %}">Ver/Crear/Eliminar Productos</a>
+              <a class="dropdown-item" href="{% url 'pago-productos' %}">Ventas Productos</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -42,8 +42,8 @@ body {
               Citas
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Añadir Cita</a>
-              <a class="dropdown-item" href="#">Mostrar Cita</a>
+              <a class="dropdown-item" href="{% url 'crear-cita' %}">Ver/Crear/Eliminar Cita</a>
+              <a class="dropdown-item" href="#">Calendario</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -51,8 +51,10 @@ body {
               Clientes
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Mascotas</a>
-              <a class="dropdown-item" href="#">Propetarios</a>
+              <a class="dropdown-item" href="{% url 'ver-mascota' %}">Mascotas</a>
+              <a class="dropdown-item" href="{% url 'expediente' %}">Crear Expedientes</a>
+              <a class="dropdown-item" href="{% url 'crear-propietario' %}">Propetarios</a>
+              <a class="dropdown-item" href="{% url 'pago-servicio' %}">Ventas Servicios</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -60,8 +62,9 @@ body {
               Ventas
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Ventas</a>
-              <a class="dropdown-item" href="#">Facturacion</a>
+              <a class="dropdown-item" href="{% url 'comprador' %}">Compradores</a>
+              <a class="dropdown-item" href="{% url 'proveedor' %}">Proveedores</a>
+              <a class="dropdown-item" href="{% url 'factura' %}">Facturacion</a>
             </div>
           </li>
         </ul>

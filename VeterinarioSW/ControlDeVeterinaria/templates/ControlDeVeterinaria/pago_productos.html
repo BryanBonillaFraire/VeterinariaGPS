@@ -1,0 +1,59 @@
+{% extends 'ControlDeVeterinaria/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1> Pago Productos </h1>
+<br>
+<form action="" method="post" class="form-horizontal" enctype="multipart/form-data">{% csrf_token %}
+	<div class="row">
+		<div class="col-sm-3">
+			<label>Producto: </label>
+			{{ form.producto }}
+		</div>
+		<div class="col-sm-3">
+			<label>Monto Total: </label>
+			{{ form.montoTotal }}
+		</div>
+		<div class="col-sm-3">
+			<label>Forma de pago: </label>
+			{{ form.formaPago }}
+		</div>
+		<div class="col-sm-3">
+			<button class="btn btn-primary" type="submit"> Guardar </button>
+		</div>
+	</div>
+	<hr>
+	<div class="row col-sm-12">
+		<table id="dvData" class="table table-striped" >
+			<thead>
+				<tr>
+					<th >
+						<strong>Producto</strong>
+					</th>
+					<th >
+						<strong>Monto Total</strong>
+					</th>
+					<th >
+						<strong>Forma De Pago</strong>
+					</th>
+					<th >
+						<strong>Eliminar</strong>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for datos in listaPagoProductos %}
+					<tr>
+						<td >{{ datos.producto }}</td>
+						<td >{{ datos.montoTotal }}</td>
+						<td >{{ datos.formaPago }}</td>
+						<td >
+							<a href="{% url 'borrar-pago-producto' datos.id %}" class="btn btn-default btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i></a>
+						</td>
+					</tr>	
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>		
+</form>
+{% endblock %}
