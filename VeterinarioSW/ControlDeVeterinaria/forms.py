@@ -1,5 +1,5 @@
 from django import forms
-from .models import Mascota, Propietario, PagoServicio, Cita, Producto, PagoProducto, Proveedor, Comprador, Factura, Cirugias, Vacunas, Otros, Enfermedades
+from .models import Mascota, Propietario, PagoServicio, Cita, Producto, PagoProducto, Proveedor, Comprador, Factura, Cirugias, Vacunas, Otros, Enfermedades, Account
 
 
 class MascotaForm(forms.ModelForm):
@@ -163,4 +163,15 @@ class FacturaForm(forms.ModelForm):
         self.fields['costoUnitario'].widget.attrs['class'] = 'form-control'
         self.fields['montoTotal'].widget.attrs['class'] = 'form-control'
         self.fields['tipoImposito'].widget.attrs['class'] = 'form-control'
+
+class AccountForm(forms.ModelForm):
+    class Meta:
+        model = Account
+        fields = ['username', 'password', 'rol']
+
+    def __init__(self, *args, **kwargs):
+        super(AccountForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs['class'] = 'form-control'
+        self.fields['password'].widget.attrs['class'] = 'form-control'
+        self.fields['rol'].widget.attrs['class'] = 'form-control'
 

@@ -1,13 +1,13 @@
 from django.urls import path
-from .views import login, index, crearMascota, borrarMascota 
+from .views import loginUser, index, crearMascota, borrarMascota,calendario
 from .views import crearPropietario, borrarPropietario, verMascota
 from .views import expediente, expediente_mascota, crearCita, borrarCita, pagoServicio, borrarPago
 from .views import producto, borrarProducto, pagoProducto, borrarPagoProducto
 from .views import factura, proveedor, comprador, borrarFactura, borrarProveedor, borrarComprador
-from .views import verComprador, verFactura, verProveedor
+from .views import verComprador, verFactura, verProveedor, crearAccount, borrarAccount, logoutUser
 
 urlpatterns = [
-    path('', login, name="login"),
+    path('', loginUser, name="login"),
     path('index/', index, name="index"),
     path('mascota/', verMascota, name="ver-mascota"),
     path('crear-mascota/', crearMascota, name="crear-mascota"),
@@ -33,4 +33,7 @@ urlpatterns = [
     path('ver-comprador/<int:id>', verComprador, name="ver-comprador"),
     path('ver-proveedor/<int:id>', verProveedor, name="ver-proveedor"),
     path('ver-factura/<int:id>', verFactura, name="ver-factura"),
+    path('accounts/', crearAccount, name="accounts"),
+    path('borrar-account/<int:id>', borrarAccount, name="borrar-account"),
+    path('logout/', logoutUser, name="logout"),
 ]

@@ -13,6 +13,17 @@ body {
   background-size: fixed;
 }
 
+.hello-msg{
+  font-size: 18px;
+  color: #fff;
+  margin-right: 20px;
+}
+
+.hello-msg a {
+  font-size: 18px;
+  color: #fff;
+  margin-right: 20px;
+}
 
 </style>
 </head>
@@ -69,6 +80,8 @@ body {
           </li>
         </ul>
       </div>
+      <span class = "hello-msg">Hola, &nbsp {{request.user}} </span>
+      <span class = "hello-msg"><a href="{% url 'logout' %}">Cerrar Sesion</a></span>
     </nav>
 	</header>
 

@@ -13,29 +13,32 @@ body {
   background-size: fixed;
 }
 
+.error{
+  font-size: 18px;
+  color: black;
+}
 
 </style>
   </head>
   <body>
-    {% if form.errors %}
-    <p> Hay un error revisa </p>
-    {% endif %}
-    {%if next %}
-    <p> Hey tu no puedes entrar ahi </p>
-    {% endif %}
     <div class="login-box">
       <img src="{% static "CDV/images/logo2.png" %}" class="avatar" alt="Avatar Image">
       <h1>Iniciar sesión</h1>
-      <form method="post" action="{% url 'login' %}">
-       {% csrf_token %}
-        <div class="name">
-      <label for="name"></label>
-        <h4>Usuario: </h4>
-        {{ form.username }}
-        <h4>Contraseña: </h4>
-        {{ form.password }}
-      <input type="submit" value="Ingresar">
-      <input type="hidden" name="next" value="{{ next }}">
+
+        {% for message in messages %}
+          <p class="error"> {{message}} </p>
+        {% endfor %}
+
+     <form method="POST" action=""> {% csrf_token %}
+          <div class="name">
+        <label for="name"></label>
+      </div>
+          <input type="text" placeholder="Ingresa usuario" name="username" id="username" required>
+          <div class="name">
+        <label for="name"></label>
+        <input type="password" placeholder="contraseña" name="password" id="password" required>
+      </div>
+          <input type="submit" value="Ingresar">
       </form>
     </div>
   </body>

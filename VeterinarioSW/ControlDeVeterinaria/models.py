@@ -38,7 +38,7 @@ class Account(AbstractBaseUser):
     )
     rol = models.CharField(max_length=30, choices=ROLES)
     username = models.CharField(max_length=50, unique=True)
-    paswword = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
