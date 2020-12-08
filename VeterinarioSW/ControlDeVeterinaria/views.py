@@ -16,16 +16,18 @@ def loginUser(request):
     if request.method == "POST":
         usernameCompare = request.POST.get('username')
         passwordCompare = request.POST.get('password')
-        usuarioEncontrado= False
+        usuarioEncontrado = False
+        usuario = ""
 
         User = get_user_model()
         users = User.objects.all()
         for user in users:
             if user.username == usernameCompare and user.password == passwordCompare:
                 usuarioEncontrado = True
+                usuario = user
         
         if usuarioEncontrado:
-            login(request, user)
+            login(request, usuario)
             return render(request, 'ControlDeVeterinaria/index.html')     
         else:
             messages.info(request, 'Nombre de usuario o contraseña erroneo')
