@@ -22,6 +22,8 @@ def loginUser(request):
         User = get_user_model()
         users = User.objects.all()
         for user in users:
+            print(user)
+            print(user.password)
             if user.username == usernameCompare and user.password == passwordCompare:
                 usuarioEncontrado = True
                 usuario = user
