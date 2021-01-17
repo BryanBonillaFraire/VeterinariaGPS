@@ -4,7 +4,7 @@ from .views import crearPropietario, borrarPropietario, verMascota
 from .views import expediente, expediente_mascota, crearCita, borrarCita, pagoServicio, borrarPago
 from .views import producto, borrarProducto, pagoProducto, borrarPagoProducto
 from .views import factura, proveedor, comprador, borrarFactura, borrarProveedor, borrarComprador
-from .views import verComprador, verFactura, verProveedor, crearAccount, borrarAccount, logoutUser
+from .views import verComprador, verFactura, verProveedor, crearAccount, borrarAccount, logoutUser, calendario
 
 urlpatterns = [
     path('', loginUser, name="login"),
@@ -36,4 +36,5 @@ urlpatterns = [
     path('accounts/', crearAccount, name="accounts"),
     path('borrar-account/<int:id>', borrarAccount, name="borrar-account"),
     path('logout/', logoutUser, name="logout"),
+    path('calendario/<int:año>', calendario, name="calendario"),
 ]

@@ -5,7 +5,7 @@ from django.views.generic import (UpdateView)
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth import get_user_model
-from datetime import date
+from datetime import date, timedelta
 
 from django.contrib.auth.decorators import login_required
 
@@ -42,11 +42,6 @@ def logoutUser(request):
 @login_required(login_url='login')
 def index(request):
     return render(request, 'ControlDeVeterinaria/index.html', {})
-
-def calendario(request, mes=1):
-    dateHoy=date.today()
-    print(mes)
-    return render(request, 'ControlDeVeterinaria/calendario.html', {})
 
 @login_required(login_url='login')
 def verMascota(request):
@@ -324,3 +319,71 @@ def borrarAccount(request, id):
         return redirect('/index/')
     Account.objects.get(id=id).delete()
     return redirect('/accounts/')
+
+@login_required(login_url='login')
+def calendario(request, año):
+    mesHoy = date.today()
+    mesHoy = mesHoy.month
+    año = int(año)
+
+    meses = ["","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
+
+    if request.method == "POST":
+        mesHoy = request.POST.get('meses')
+        mesHoy = int(mesHoy)
+        año = request.POST.get('año')
+        año = int(año)
+
+    fecha_inicial = date(año,1,1)
+    fecha_final = date(año,12,31)
+    listaCitas = Cita.objects.all()
+    listaDias = []
+
+    while(fecha_inicial < fecha_final):
+        dia = fecha_inicial.day
+        mes = fecha_inicial.month
+        nombreDia = fecha_inicial.strftime("%a")
+
+        for citas in listaCitas:
+            if citas.fecha.day == dia and citas.fecha.month == mes and citas.fecha.year == año:
+                diaCita = citas.fecha.day
+                mesCita = citas.fecha.month
+                horaCita = citas.fecha.hour
+                minutoCita = citas.fecha.minute
+                mascota = citas.mascota.nombreMascota
+                propietario = citas.mascota.propietario.nombrePropietario
+                break
+            else:
+                diaCita = ""
+                horaCita = ""
+                minutoCita = ""
+                mesCita = ""
+                mascota = ""
+                propietario = ""
+                if mascota != "":
+                    print(mascota)
+        
+        informacion = {
+            "dia":dia,
+            "mes":mes,
+            "nombreDia":nombreDia,
+            "diaCita":diaCita,
+            "horaCita":horaCita,
+            "minutoCita":minutoCita,
+            "mesCita":mesCita,
+            "mascota":mascota,
+            "propietario":propietario,
+        }
+        print(informacion)
+        listaDias.append(informacion)
+        if fecha_inicial == fecha_final:
+            break
+        fecha_inicial = fecha_inicial + timedelta(1)
+
+    context = {
+        "año":año,
+        "mesSeleccionado":meses[mesHoy],
+        "listaDias":listaDias,
+        "mesHoy":mesHoy,
+    }
+    return render(request, 'ControlDeVeterinaria/calendario.html', context)

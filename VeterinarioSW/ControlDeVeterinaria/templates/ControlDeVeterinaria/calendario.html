@@ -1,44 +1,80 @@
 {% extends 'ControlDeVeterinaria/base.html' %}
 {% load static %}
 {% block content %}
+<br>
+<form action="" method="post" class="form-horizontal" enctype="multipart/form-data" align="center">{% csrf_token %}
+<label for="meses">Mes:&nbsp</label>
+<select name="meses" id="meses">
+  <option value="1">Enero</option>
+  <option value="2">Febrero</option>
+  <option value="3">Marzo</option>
+  <option value="4">Abril</option>
+  <option value="5">Mayo</option>
+  <option value="6">Junio</option>
+  <option value="7">Julio</option>
+  <option value="8">Agosto</option>
+  <option value="9">Septiembre</option>
+  <option value="10">Octubre</option>
+  <option value="11">Noviembre</option>
+  <option value="12">Diciembre</option>
+</select>
+<br>
+<br>
+  <label for="año">Año:&nbsp</label>
+  <input type="number" id="año" name="año" maxlength="4" size="4"><br>
+  <br><input type="submit" value="Actualizar">
+</form>
+<h1 style="text-align:center;"> {{año}} {{mesSeleccionado}} </h1>
+<br>
+<table style = "width:80%" align ="center">
+  <tr>
+    <th>Domingo</th>
+    <th>Lunes</th>
+    <th>Martes</th>
+    <th>Miercoles</th>
+    <th>Jueves</th>
+    <th>Viernes</th>
+    <th>Sabado</th>
+  </tr>
 
-<ul class="nav">
-  <li class="nav-item">
-    <a class="nav-link" href="#">Enero</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Febrero</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Marzo</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Abril</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Mayo</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Junio</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Julio</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Agosto</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Septiembre</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Octubre</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Noviembre</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Diciembre</a>
-  </li>
-</ul>
+{% for dias in listaDias %}
+  {% if dias.mes == mesHoy %}
+	{% if  dias.dia == 1 %}
+		{% if dias.nombreDia == 'Mon' %}
+		  <td colspan="1"> </td>
+		{% endif %}	
+		{% if dias.nombreDia == 'Tue' %}
+	  	<td colspan="2"> </td>
+		{% endif %}
+		{% if dias.nombreDia == 'Wed' %}
+	  	<td colspan="3"> </td>
+		{% endif %}					
+		{% if dias.nombreDia == 'Thu' %}
+	  	<td colspan="4"> </td>
+		{% endif %}
+		{% if dias.nombreDia == 'Fri' %}
+		  <td colspan="5"> </td>
+		{% endif %}
+		{% if dias.nombreDia == 'Sat' %}
+		  <td colspan="6"> </td>
+	{% endif %}
+{% endif %}
 
+
+{% if dias.nombreDia == "Sun" %}
+  <tr>
+{% endif %}
+<td class="cview--date">
+  <p style = "width:200px; height:100px;{% if dias.mascota %} background-color:lightblue;"> {% else %}background-color:lightgrey;"> {% endif %}{{dias.dia}} 
+  <br>{% if dias.mascota %}Hoy toca cita con {{dias.mascota}} 
+  <br> De {{dias.propietario}} A Las {{dias.horaCita}} : {{dias.minutoCita}} {% endif %}
+  </p>
+</td>
+{% if dias.nombreDia == "Sat" %}
+  </tr>
+{% endif %}
+{% endif %}
+{% endfor %}
+
+</table>
 {% endblock %}
